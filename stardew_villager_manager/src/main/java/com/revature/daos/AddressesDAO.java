@@ -13,7 +13,7 @@ public class AddressesDAO implements AddressesDAOInterface {
 	@Override 
 	public Addresses getAddressById(int id) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "select * from addresses where address_id = ?;";
+			String sql = "select * from villager_addresses where address_id = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();

@@ -13,7 +13,7 @@ public class CareersDAO implements CareersDAOInterface{
 	@Override
 	public Careers getCareerById(int id) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "select * from careers where career_id = ?;";
+			String sql = "select * from villager_careers where career_id = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();

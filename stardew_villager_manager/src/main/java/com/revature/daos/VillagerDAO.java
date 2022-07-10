@@ -22,7 +22,7 @@ public class VillagerDAO implements VillagerDAOInterface {
 			int marriage_candidacy_id, int address_id, int career_id, int movie_id) {
 
 		try(Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "insert into villagers (villager_name, villager_birthday, villager_gender_fk, "
+			String sql = "insert into stardew_villagers (villager_name, villager_birthday, villager_gender_fk, "
 					+ "villager_marriage_candidcay_fk, villager_address_fk, villager_career_fk, villager_movie_fk)"
 					+ "values (?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -37,7 +37,7 @@ public class VillagerDAO implements VillagerDAOInterface {
 			
 			ps.executeUpdate();
 			
-			System.out.println("Village " + villager_name.getVillager_name() + " was added!");
+			System.out.println("Villager " + villager_name.getVillager_name() + " was added!");
 			
 		} catch (SQLException e) {
 			System.out.println("Insert Villager Failed");
@@ -50,7 +50,7 @@ public class VillagerDAO implements VillagerDAOInterface {
 	public ArrayList<Villagers> getVillagers() {
 
 		try(Connection conn = ConnectionUtil.getConnection()){
-			String sql = "select * from villagers;";
+			String sql = "select * from stardew_villagers;";
 			Statement s = conn.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 			ArrayList<Villagers> villagerList = new ArrayList<>();
@@ -63,33 +63,35 @@ public class VillagerDAO implements VillagerDAOInterface {
 						null, null, null, null, null
 						);
 				
-				int genderFK = rs.getInt("gender_id");
+				int genderFK = rs.getInt("villager_gender_fk");
 				GendersDAO gDAO = new GendersDAO();
 				Genders g = gDAO.getGenderById(genderFK);
 				v.setGender(g);
 				
-				int marriageCandidacyFK = rs.getInt("marriage_candidacy_id");
+				int marriageCandidacyFK = rs.getInt("villager_marriage_candidacy_fk");
 				MarriageCandidacyDAO mcDAO = new MarriageCandidacyDAO();
 				MarriageCandidacy mc = mcDAO.getMarriageCandidacyById(marriageCandidacyFK);
 				v.setMarriagecandidacy(mc);
 				
-				int addressFK = rs.getInt("address_id");
+				int addressFK = rs.getInt("villager_address_fk");
 				AddressesDAO aDAO = new AddressesDAO();
 				Addresses a = aDAO.getAddressById(addressFK);
 				v.setAddress(a);
 				
-				int careerFK = rs.getInt("career_id");
+				int careerFK = rs.getInt("villager_career_fk");
 				CareersDAO cDAO = new CareersDAO();
 				Careers c = cDAO.getCareerById(careerFK);
 				v.setCareer(c);
 				
-				int movieFK = rs.getInt("movie_id");
+				int movieFK = rs.getInt("villager_favorite_movie_fk");
 				MovieDAO mDAO = new MovieDAO();
 				Movies m = mDAO.getMovieById(movieFK);
 				v.setMovie(m);
 				
 				villagerList.add(v);
 			}
+			
+			return villagerList;
 			
 		} catch (SQLException e) {
 			System.out.println("Something went wrong getting villagers");

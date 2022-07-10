@@ -14,7 +14,7 @@ public class MovieDAO implements MovieDAOInterface{
 	public Movies getMovieById(int id) {
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "select * from movies where movie_id = ?;";
+			String sql = "select * from village_movies where movie_id = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();

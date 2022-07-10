@@ -13,7 +13,7 @@ public class GendersDAO implements GenderDAOInterface {
 	@Override
 	public Genders getGenderById(int id) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "select * from genders where gender_id = ?;";
+			String sql = "select * from villager_genders where gender_id = ?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
