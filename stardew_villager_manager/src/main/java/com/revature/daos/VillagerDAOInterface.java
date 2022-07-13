@@ -11,4 +11,13 @@ public interface VillagerDAOInterface {
 	
 	//get all villagers
 	ArrayList<Villagers> getVillagers();
+	
+	//delete a villager
+	public void deleteVillager(int id);
+	
+	//update villager's name
+	boolean updateVillagerName(String newName, int id);
+	
+	
+
 }

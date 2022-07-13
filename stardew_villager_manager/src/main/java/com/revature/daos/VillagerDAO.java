@@ -101,4 +101,40 @@ public class VillagerDAO implements VillagerDAOInterface {
 		return null;
 	}
 
+	@Override
+	public void deleteVillager(int id) {
+
+		try(Connection conn = ConnectionUtil.getConnection()) {
+			String sql = "delete from stardew_villagers where villager_id = ?;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			System.out.println("A villager was removed from Stardew Valley.");
+		} catch(SQLException e) {
+			System.out.println("Removing the villager was unsuccessful.");
+			e.printStackTrace();
+		}
+	}
+
+	
+	@Override
+	public boolean updateVillagerName(String newName, int id) {
+
+		try(Connection conn = ConnectionUtil.getConnection()) {
+			String sql = "update stardew_villagers set villager_name = ? where villager_id = ?;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, newName);
+			ps.setInt(2, id);
+			System.out.println("Villager #" + id +"'s name has been changed to " + newName);
+			
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Failed to update villager's name.");
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+	
 }
