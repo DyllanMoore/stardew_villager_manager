@@ -32,15 +32,26 @@ public class VillagerController {
 	};
 	
 	public Handler updateVillagerHandler = (ctx) -> {
-		int id = Integer.parseInt(ctx.body());
-		String newName = ctx.pathParam("new_name");
+		String oldName = ctx.pathParam("old_name");
+		String newName = ctx.body();
 		
 		
-		if(vDAO.updateVillagerName(newName, id)) {
+		if(vDAO.updateVillagerName(newName, oldName)) {
 			ctx.status(202);
 		} else {
 			ctx.status(406);
 		}
 	};
 
+	public Handler insertVillagerHandler = (ctx) -> {
+		String body = ctx.body();
+		Gson gson = new Gson();
+		Villagers newVillager = gson.fromJson(body, Villagers.class);
+		
+		if(vDAO.insertVillager(newVillager)) {
+			ctx.status(202);
+		} else {
+			ctx.status(406);
+		}
+	};
 }

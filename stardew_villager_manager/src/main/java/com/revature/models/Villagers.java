@@ -11,6 +11,12 @@ public class Villagers {
 	private Careers career;
 	private Movies movie;
 	
+	private int villager_gender_fk;
+	private int villager_marriage_candidacy_fk;
+	private int villager_address_fk;
+	private int villager_career_fk;
+	private int villager_favorite_movie_fk;
+	
 	//boilerplate code------------------
 	public Villagers() {
 		super();
@@ -112,6 +118,47 @@ public class Villagers {
 	public void setMovie(Movies movie) {
 		this.movie = movie;
 	}
+
+	public int getVillager_gender_fk() {
+		return villager_gender_fk;
+	}
+
+	public void setVillager_gender_fk(int villager_gender_fk) {
+		this.villager_gender_fk = villager_gender_fk;
+	}
+
+	public int getVillager_marriage_candidacy_fk() {
+		return villager_marriage_candidacy_fk;
+	}
+
+	public void setVillager_marriage_candidacy_fk(int villager_marriage_candidacy_fk) {
+		this.villager_marriage_candidacy_fk = villager_marriage_candidacy_fk;
+	}
+
+	public int getVillager_address_fk() {
+		return villager_address_fk;
+	}
+
+	public void setVillager_address_fk(int villager_address_fk) {
+		this.villager_address_fk = villager_address_fk;
+	}
+
+	public int getVillager_career_fk() {
+		return villager_career_fk;
+	}
+
+	public void setVillager_career_fk(int villager_career_fk) {
+		this.villager_career_fk = villager_career_fk;
+	}
+
+	public int getVillager_favorite_movie_fk() {
+		return villager_favorite_movie_fk;
+	}
+
+	public void setVillager_favorite_movie_fk(int villager_favorite_movie_fk) {
+		this.villager_favorite_movie_fk = villager_favorite_movie_fk;
+	}
+	
 	
 	
 	

@@ -45,9 +45,9 @@ public class Launcher {
 		
 		app.delete("/remove_villager/:villager_id", vc.deleteVillagerHandler);
 		
-		//app.insert
+		app.post("add_villager/:villager_name", vc.insertVillagerHandler);
 		
-		app.put("/update_villager/:new_name", vc.updateVillagerHandler);
+		app.put("/update_villager/:old_name", vc.updateVillagerHandler);
 	
 		
 		//endpoint handler for login
